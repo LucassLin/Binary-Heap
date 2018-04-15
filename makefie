@@ -1,0 +1,25 @@
+CC = g++                      # for the compiler we are going to use                                             
+CFLAGS  += -O3
+CFLAGS  += -std=c++0x
+CFLAGS  += -pg -D_DEBUG -g -c -Wall              # options to pass to the compiler
+DEPS = BinaryHeap.h event.h MST.h PQ.h SysQueue.h
+LDFLAGS =                          # for linker/loader options like -lm
+SOURCES = main.cpp
+OBJECTS = $(SOURCES:.cpp=.o)       # means copy .cpp names to .o names ;-)
+EXECUTABLE = main              # for the executable program's name                                                
+
+
+
+all: $(SOURCES) $(EXECUTABLE) 
+
+program2 : $(OBJECTS) 
+	$(CC) $(LDFLAGS) $(OBJECTS) -o program2 
+
+%.o: %.cpp $(DEPS)
+	$(CC) $(CFLAGS) *.cpp
+
+%.o: %.cpp $(DEPS)
+	$(CC) $(CFLAGS) *.cpp
+
+clean: 
+	rm $(EXECUTABLE) $(OBJECTS)
